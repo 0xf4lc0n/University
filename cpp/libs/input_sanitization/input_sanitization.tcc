@@ -32,7 +32,7 @@ namespace input_sanitization {
          * actual number of line in file)
          */
         template<typename T, typename S = long>
-        void _check_input(T &var_store_input, std::istream &is = std::cin, S min = 0x0, S max = 0xFFFFFFFFL,
+        void _check_input(T &var_store_input, std::istream &is = std::cin, S min = 0x0L, S max = 0xFFFFFFFFL,
                           int line_number = -1) {
             if (is.fail() or var_store_input < min or var_store_input > max) {
                 error_details err_det{line_number, min, max};
@@ -72,7 +72,7 @@ namespace input_sanitization {
      * actual number of line in file)
      */
     template<typename T, typename S = long>
-    void check_input(T &var_store_input, std::istream &is = std::cin, S min = 0x0, S max = 0xFFFFFFFFL,
+    void check_input(T &var_store_input, std::istream &is = std::cin, S min = 0x0L, S max = 0xFFFFFFFFL,
                      int line_number = -1) {
 
         if constexpr (not std::is_same_v<T, std::string> and std::is_fundamental_v<T>) {
