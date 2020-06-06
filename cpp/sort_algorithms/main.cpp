@@ -2,13 +2,7 @@
 #include <chrono>
 #include <fstream>
 #include "c_array.h"
-
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
-    static constexpr bool is_linux = false;
-#else
-    static constexpr bool is_linux = true;
-    #include <sys/resource.h>
-#endif
+#include "stack_size.h"
 
 /**
  * Fuction does the following things:
@@ -33,40 +27,19 @@ void log_and_process(T &&sort_algorithm, CArray<S> &arr, std::ostream &os) {
 }
 
 int main() {
-    if (is_linux) {
-        // Set stack size
-        // 8 MB
-        const rlim_t stack_size = 8 * 1024 * 1024;
-        struct rlimit rl;
-        // Download current configuration
-        int err_code = getrlimit(RLIMIT_STACK, &rl);
-
-        if (err_code == 0) {
-            // Set new stack size
-            rl.rlim_cur = stack_size;
-            err_code = setrlimit(RLIMIT_STACK, &rl);
-            if (err_code != 0) {
-                std::cerr << "Error code: " << err_code << std::endl;
-                return EXIT_FAILURE;
-            }
-
-        } else {
-            std::cerr << "Set size cannot be modified!" << std::endl;
-            std::cerr << "Due to this issue quciksort called for ordered set of data will cause stack overflow!"
-                      << std::endl;
-            std::cerr << "Aborting..." << std::endl;
-            return EXIT_FAILURE;
-        }
-    }
     const int SIZES[3] = {100, 1000, 1000000};
     const std::string POS_TYPE[4] = {"not ordered", "ordered", "reversed", "partial order"};
     std::ofstream out_file;
 
-    out_file.open("logs2.txt", std::ios::out);
+    out_file.open("logs.txt", std::ios::out);
 
     if (not out_file) {
         std::cerr << "[Error] Cannot open log file!" << std::endl;
         return EXIT_FAILURE;
+    }
+
+    if (is_linux) {
+        change_stack_size();
     }
 
     // Process all sort algorithms
