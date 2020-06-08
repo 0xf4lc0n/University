@@ -205,7 +205,6 @@ private:
      */
     void _fill_array(int n);
 
-
     /**
      * Wrapper method which sets factors and calculate the first pseudo random number
      * If seed is default function calculate it

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "../libs/stack_and_rpn/RPN.h"
+#include "RPN.h"
 
 int main() {
     o_map l_operator_map{

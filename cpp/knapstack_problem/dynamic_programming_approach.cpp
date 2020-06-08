@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include "../libs/input_sanitization/input_sanitization.tcc"
-#include "../libs/backpack/backpack_problem.tcc"
-#include "../libs/backpack/subject.tcc"
+#include "input_sanitization.tcc"
+#include "backpack_problem.tcc"
+#include "subject.tcc"
 
 namespace isa = input_sanitization;
 

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <memory>
 #include <vector>
-#include "../input_sanitization/input_sanitization.tcc"
+#include "input_sanitization.tcc"
 
 /**
  * Functions sends created set for designated output

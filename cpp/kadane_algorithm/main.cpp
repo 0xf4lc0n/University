@@ -44,13 +44,13 @@ int main() {
     std::cin >> data_packet_amount;
     check_input(std::cin, data_packet_amount);
 
-    // For loop that allow to process algorithm for inserted amount of arrays
+    // For loop processing algorithm for inserted amount of arrays
     for (std::size_t loop_counter = 0; loop_counter < data_packet_amount; loop_counter++) {
 
-        // Insert columns and rows number
+        // Insert number of columns and rows (from 0 to 100 range)
         // If negative number will be assigned to std::size_t, it will contain result express by that formula
+        // If negative number will be provided, std:size_t will contain
         // negative number + std::numeric_limits<unsigned long >::max() + 1
-        // and the result will always be between 0 and 100
         do {
             std::cout << "Rows >> ";
             std::cin >> rows;
@@ -79,7 +79,7 @@ int main() {
             }
         }
 
-        // Find maximum sum for subarray and return it to variable which store that sum and start/end indexes
+        // Find maximum subarray and store information about that structure (start, end indexes and max sum)
         sub_array_bounds max_subarray = find_max_sub_array(my_2d_array, rows, cols);
 
         // Print maximum sum for subarray
@@ -130,19 +130,18 @@ row_max_bounds kadane_algorithm(const T *row_sum_array, std::size_t len) {
     std::size_t current_start = 0;
     std::size_t best_start = 0, best_end = 0;
 
-    // For each element in processing row
+    // For each column in currently processed row
     for (std::size_t i = 0; i < len; i++) {
-        // Add it to value which store currently processed sum
+        // Add column's value to current row's sum
         current_sum += row_sum_array[i];
 
-        // If sum of processed elements is negative
-        // Increment row start index and clear current_sum variable
+        // If sum is negative, move start index and reset sum variable
         if (current_sum < 0) {
             current_start = i + 1;
             current_sum = 0;
         }
 
-        // If sum of processed elements is bigger than previous maximum sum, update index and sum variables
+        // If current sum is bigger than previous one, update indexes and sum variable
         if (current_sum > best_sum) {
             best_sum = current_sum;
             best_start = current_start;
@@ -150,47 +149,44 @@ row_max_bounds kadane_algorithm(const T *row_sum_array, std::size_t len) {
         }
     }
 
-    // Structure storing start and end indexes and the maximum sum of continuous elements
-    row_max_bounds rb{best_start, best_end, best_sum};
-
-    return rb;
+    return {best_start, best_end, best_sum};
 }
 
 template<typename T>
 sub_array_bounds find_max_sub_array(T **dimensional_array, std::size_t rows, std::size_t cols) {
-    // Structure that store
-    // start_index, end_index and the biggest sum of elements
-    // for currently processed row
+    // Structure stores max 1D subarray data (start, end indexes and max sum)
     row_max_bounds rmb{};
 
-    // Structure that store
-    // column_start and column_end indexes
-    // row_start and row_end indexes
-    // maximal sum of contiguous elements
-    // for subarray with the biggest fum of contiguous elements
+    // Structure stores max 2D subarray data
+    // row's start, end indexes
+    // column's start, end indexes
+    // sum of all contiguous elements
     sub_array_bounds max_subarray{};
 
+    // Array contains sum of elements in row (in specified range)
     int *row_sum = new int[rows];
 
     // Main for loop which incrementing col_start index as long as it's lower than total number of columns
+
+    // Loop processing data via columns
     for (std::size_t col_start = 0; col_start < cols; col_start++) {
-        // For each new column start index row_sum array is cleared
+        // Clear max_sum for each row
         for (std::size_t i = 0; i < rows; i++) {
             row_sum[i] = 0;
         }
 
-        // For each row, add items from col_start to col_end and increase the col_end index if it is lower than
-        // total number of columns
+        // Sum all contiguous elements in 2D subarray
+        // For current column
         for (std::size_t col_end = col_start; col_end < cols; col_end++) {
+            // Sum all values from rows
             for (std::size_t row = 0; row < rows; row++) {
                 row_sum[row] += dimensional_array[row][col_end];
             }
 
-            // Use Kadane algorithm for array row_sum to find maximal sum of contiguous elements
+            // Kadane algorithm searches for maximal sum of contiguous elements
             rmb = kadane_algorithm(row_sum, rows);
 
-            // Check if currently processed array returned sum bigger than the previous one
-            // If it was, update information about the biggest maximal sum
+            // If maximal subarray is bigger than previous one, update structure
             if (rmb.max > max_subarray.max_sum) {
                 max_subarray.max_sum = rmb.max;
                 max_subarray.row_begin = rmb.start;

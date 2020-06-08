@@ -1,8 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <fstream>
-#include "../libs/recursion/recursion_and_merge.h"
-
+#include "recursion_and_merge.h"
 
 namespace ra = recursion::auxiliary;
 namespace rw = recursion::wrappers;

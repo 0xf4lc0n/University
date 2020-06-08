@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <memory>
-#include "../libs/pseudo_code_impl/set_manipulation.h"
+#include "set_manipulation.h"
 
 namespace ins = input_sanitization;
 
@@ -27,7 +27,7 @@ int main() {
     auto char_set = std::make_unique<char[]>(number_of_elements);
 
     fill_char_set(char_set, number_of_elements);
-    out_file.open("result.txt", std::ios::out);
+    out_file.open("0x1.txt", std::ios::out);
 
     if (not out_file.is_open()) {
         std::cout << "Error! File cannot be opened!" << std::endl;
@@ -42,10 +42,13 @@ int main() {
         current_index = 0;
         copy_of_subsets_number = subsets_number;
 
+        // Calculate index of value to display or to hide
         while (copy_of_subsets_number % 2 == 0) {
-            copy_of_subsets_number = copy_of_subsets_number / 2;
+            copy_of_subsets_number /= 2;
             current_index++;
         }
+
+        // Displaying/hiding characters (1 - display, 0 - hide)
         if (current_index <= number_of_elements) {
             number_set[current_index] = 1 - number_set[current_index];
         }

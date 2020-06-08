@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include "../libs/backpack/backpack_problem.tcc"
-#include "../libs/input_sanitization/input_sanitization.tcc"
+#include "backpack_problem.tcc"
+#include "input_sanitization.tcc"
 
 namespace isa = input_sanitization;
 

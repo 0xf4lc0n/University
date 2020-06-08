@@ -148,5 +148,5 @@ output_file_data<T> assign_file_data() {
         insert_min();
     }
 
-    return {ofd};
+    return ofd;
 }

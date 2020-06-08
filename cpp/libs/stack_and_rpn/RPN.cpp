@@ -108,8 +108,11 @@ std::string from_ONP(const std::string &input, const o_map &l_map, const o_map &
 
                 operators++;
                 tmp_result = "";
+
+                // Download information about operator
                 current_operator = take_operator(l_map, r_map, std::string(1, c));
 
+                // Take first operand
                 if (priority_stack.top() <= current_operator.value_weight.second) {
                     tmp_result = "(" + stack.top() + ")";
                 } else {
@@ -123,8 +126,7 @@ std::string from_ONP(const std::string &input, const o_map &l_map, const o_map &
                     return "error!";
                 }
 
-                current_operator = take_operator(l_map, r_map, std::string(1, c));
-
+                // Take second operand
                 if (priority_stack.top() < current_operator.value_weight.second) {
                     tmp_result = "(" + stack.top() + ")" + current_operator.value_weight.first + tmp_result;
                 } else {
@@ -134,8 +136,10 @@ std::string from_ONP(const std::string &input, const o_map &l_map, const o_map &
                 stack.pop();
                 priority_stack.pop();
             } else {
+                // Download information about operator
                 current_operator = take_operator(l_map, r_map, std::string(1, c));
 
+                // Take operand
                 if (priority_stack.top() <= current_operator.value_weight.second) {
                     tmp_result = current_operator.value_weight.first + "(" + stack.top() + ")";
                 } else {

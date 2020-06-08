@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../libs/stack_and_rpn/Stack.tcc"
-#include "../libs/input_sanitization/input_sanitization.tcc"
+#include "Stack.tcc"
+#include "input_sanitization.tcc"
 
 namespace ins = input_sanitization;
 

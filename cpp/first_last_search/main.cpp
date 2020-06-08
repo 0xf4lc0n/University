@@ -3,8 +3,8 @@
 #include <sstream>
 #include <fstream>
 #include <iomanip>
-#include "../libs/searching/searching.h"
-#include "../libs/input_sanitization/input_sanitization.tcc"
+#include "searching.h"
+#include "input_sanitization.tcc"
 
 namespace se = searching_element;
 namespace wrap = searching_element::wrappers;

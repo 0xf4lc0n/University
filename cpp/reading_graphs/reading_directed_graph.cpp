@@ -2,8 +2,8 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
-#include "../libs/input_sanitization/input_sanitization.tcc"
-#include "../libs/graphs/auxiliary.h"
+#include "input_sanitization.tcc"
+#include "auxiliary.h"
 
 namespace isn = input_sanitization;
 

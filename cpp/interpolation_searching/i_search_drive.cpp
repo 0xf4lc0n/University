@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../libs/interpolation_searching/awesome_cut_library.h"
-#include "../libs/input_sanitization/input_sanitization.tcc"
+#include "awesome_cut_library.h"
+#include "input_sanitization.tcc"
 
 namespace ins = input_sanitization;
 

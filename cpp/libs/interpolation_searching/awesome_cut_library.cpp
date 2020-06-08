@@ -21,6 +21,7 @@ int interpolation_search(std::vector<int> &vec, int searching_value) {
 
         if (vec[current_index] == searching_value) {
             if (current_index > 0) {
+                // Go to the first occurrence
                 while (vec[current_index - 1] == searching_value)
                     current_index--;
             }

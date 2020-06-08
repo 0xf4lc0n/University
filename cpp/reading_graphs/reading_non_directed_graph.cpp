@@ -2,8 +2,8 @@
 #include <fstream>
 #include <string>
 
-#include "../libs/graphs/auxiliary.h"
-#include "../libs/input_sanitization/input_sanitization.tcc"
+#include "auxiliary.h"
+#include "input_sanitization.tcc"
 
 using List = class_example::List;
 namespace isn = input_sanitization;

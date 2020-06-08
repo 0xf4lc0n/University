@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
 
-#include "../libs/generators/generators.tcc"
-#include "../libs/input_sanitization/input_sanitization.tcc"
+#include "generators.tcc"
+#include "input_sanitization.tcc"
 
 namespace ins = input_sanitization;
 

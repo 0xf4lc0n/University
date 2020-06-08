@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "../libs/recursion/recursion_and_merge.h"
-#include "../libs/input_sanitization/input_sanitization.tcc"
+#include "recursion_and_merge.h"
+#include "input_sanitization.tcc"
 
 namespace isn = input_sanitization;
 using namespace merge;

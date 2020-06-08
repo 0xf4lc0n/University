@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <memory>
-#include "../libs/pseudo_code_impl/set_manipulation.h"
+#include "set_manipulation.h"
 
 
 int main() {
@@ -23,7 +23,7 @@ int main() {
     auto c_set = std::make_unique<char[]>(set_size);
 
     fill_char_set(c_set, set_size);
-    out_file.open("result_lg.txt", std::ios::out);
+    out_file.open("0x2.txt", std::ios::out);
 
     if (not out_file.is_open()) {
         std::cout << "Error! File cannot be opened!" << std::endl;
@@ -44,8 +44,10 @@ int main() {
         } else {
             end_index = subset_size - 1;
         }
+
         if (end_index >= 0) {
             for (int i = subset_size - 1; i >= end_index; i--) {
+                // Take next character from set
                 n_subset[i] = n_subset[end_index] + i - end_index + 1;
             }
         }
